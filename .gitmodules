@@ -1,0 +1,30 @@
+[submodule "cookbooks/mysql"]
+	path = cookbooks/mysql
+	url = https://github.com/opscode-cookbooks/mysql.git
+[submodule "cookbooks/openssl"]
+	path = cookbooks/openssl
+	url = https://github.com/opscode-cookbooks/openssl.git
+[submodule "cookbooks/build-essential"]
+	path = cookbooks/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential.git
+[submodule "cookbooks/tomcat"]
+	path = cookbooks/tomcat
+	url = https://github.com/opscode-cookbooks/tomcat.git
+[submodule "cookbooks/java"]
+	path = cookbooks/java
+	url = https://github.com/opscode-cookbooks/java.git
+[submodule "cookbooks/windows"]
+	path = cookbooks/windows
+	url = https://github.com/opscode-cookbooks/windows.git
+[submodule "cookbooks/chef_handler"]
+	path = cookbooks/chef_handler
+	url = https://github.com/opscode-cookbooks/chef_handler.git
+[submodule "cookbooks/openssh"]
+	path = cookbooks/openssh
+	url = https://github.com/opscode-cookbooks/openssh.git
+[submodule "cookbooks/iptables"]
+	path = cookbooks/iptables
+	url = https://github.com/opscode-cookbooks/iptables.git
+[submodule "cookbooks/application_java"]
+	path = cookbooks/application_java
+	url = https://github.com/opscode-cookbooks/application_java.git
