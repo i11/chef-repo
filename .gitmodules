@@ -49,3 +49,9 @@
 [submodule "cookbooks/aws"]
 	path = cookbooks/aws
 	url = https://github.com/opscode-cookbooks/aws.git
+[submodule "cookbooks/erlang"]
+	path = cookbooks/erlang
+	url = https://github.com/opscode-cookbooks/erlang.git
+[submodule "cookbooks/rabbitmq"]
+	path = cookbooks/rabbitmq
+	url = https://github.com/opscode-cookbooks/rabbitmq.git
