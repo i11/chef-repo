@@ -7,9 +7,6 @@
 [submodule "cookbooks/build-essential"]
 	path = cookbooks/build-essential
 	url = https://github.com/opscode-cookbooks/build-essential.git
-[submodule "cookbooks/tomcat"]
-	path = cookbooks/tomcat
-	url = https://github.com/opscode-cookbooks/tomcat.git
 [submodule "cookbooks/java"]
 	path = cookbooks/java
 	url = https://github.com/opscode-cookbooks/java.git
@@ -49,3 +46,6 @@
 [submodule "cookbooks/yum"]
 	path = cookbooks/yum
 	url = https://github.com/opscode-cookbooks/yum.git
+[submodule "cookbooks/aws"]
+	path = cookbooks/aws
+	url = https://github.com/opscode-cookbooks/aws.git

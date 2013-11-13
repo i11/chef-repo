@@ -1,0 +1,26 @@
+<% @servers.each do |server| -%> 
+server {
+  <% server.each_pair do |name, value| -%> 
+    <%- unless name == 'location' -%>
+  <%= name %> <%= value %>;
+    <%- end -%>
+  <% end -%> 
+  <% unless server['location'].nil? -%> 
+    <% server['location'].each do |location| -%> 
+  location <%= location['path'] %> {
+      <% location.each_pair do |name, value| -%> 
+        <%- unless name == 'path' -%>
+          <% if value.kind_of? Array -%> 
+            <% value.each do |element| -%> 
+    <%= name %> <%= element %>; 
+            <% end -%> 
+          <% else -%> 
+    <%= name %> <%= value %>; 
+          <%- end -%>
+        <% end -%> 
+      <% end -%> 
+  }
+    <% end -%> 
+  <% end -%> 
+}
+<% end -%>
