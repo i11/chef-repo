@@ -7,7 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-default['profile-testgang']['tomcat']['context_path'] = 'backend'
+#default['profile-testgang']['tomcat']['context_path'] = 'backend'
+#default['profile-testgang']['tomcat']['manager_path'] = 'manager'
 default['profile-testgang']['nginx']['servers'] = [
   {
     'server_name' => node['fqdn'],
@@ -15,7 +16,7 @@ default['profile-testgang']['nginx']['servers'] = [
     'location'   => [
       {   
         'path'             => '/',
-        'proxy_pass'       => "http://127.0.0.1:#{node['tomcat']['port']}/#{node['profile-testgang']['tomcat']['context_path']}", 
+        'proxy_pass'       => "http://127.0.0.1:#{node['tomcat']['port']}/",
         'proxy_redirect'   => 'off',
         'proxy_set_header' => [ 'Host $host', 'X-Forwarded-For $remote_addr', 'X-Real-IP $remote_addr' ]
       }
