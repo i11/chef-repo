@@ -23,7 +23,7 @@ default['profile-testgang']['app']['root'] = File.join(node['profile-testgang'][
 
 default['profile-testgang']['rip']['name'] = 'rip'
 default['profile-testgang']['rip']['port'] = 8080
-default['profile-testgang']['rip']['root'] =  File.join(node['profile-testgang']['user']['home'], node['profile-tes    tgang']['rip']['name'])
+default['profile-testgang']['rip']['root'] =  File.join(node['profile-testgang']['user']['home'], node['profile-testgang']['rip']['name'])
 
 default['profile-testgang']['front']['name'] = 'www'
 default['profile-testgang']['front']['root'] = File.join(node['profile-testgang']['user']['home'], node['profile-testgang']['front']['name'])
@@ -33,7 +33,7 @@ default['profile-testgang']['front']['root'] = File.join(node['profile-testgang'
 #
 default['profile-testgang']['nginx']['servers'] = [
   {
-    'server_name' => "(#{node['profile-testgang']['front']['name']}\.)?#{node['profile-testgang']['domain']}"
+    'server_name' => "(#{node['profile-testgang']['front']['name']}\.)?#{node['profile-testgang']['domain']}",
     'listen'      => 80,
     'location'    => [
       {
@@ -43,7 +43,7 @@ default['profile-testgang']['nginx']['servers'] = [
     ]
   },
   {
-    'server_name' => "#{node['profile-testgang']['app']['name']}.#{node['profile-testgang']['domain']}"
+    'server_name' => "#{node['profile-testgang']['app']['name']}.#{node['profile-testgang']['domain']}",
     'listen'      => 80,
     'location'    => [
       {
@@ -53,7 +53,7 @@ default['profile-testgang']['nginx']['servers'] = [
     ]
   },
   {
-    'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}"
+    'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}",
     'listen'      => 80,
     'location'    => [
       {
