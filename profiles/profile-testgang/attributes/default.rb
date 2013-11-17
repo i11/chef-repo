@@ -20,6 +20,7 @@ default['profile-testgang']['domain'] = 'testgang.net'
 
 default['profile-testgang']['app']['name'] = 'app'
 default['profile-testgang']['app']['root'] = File.join(node['profile-testgang']['user']['home'], node['profile-testgang']['app']['name'])
+default['profile-testgang']['app']['ssl_dir'] = File.join(node['profile-testgang']['user']['home'], 'ssl', node['profile-testgang']['app']['name'])
 
 default['profile-testgang']['rip']['name'] = 'rip'
 default['profile-testgang']['rip']['port'] = 8080
@@ -45,6 +46,14 @@ default['profile-testgang']['nginx']['servers'] = [
   {
     'server_name' => "#{node['profile-testgang']['app']['name']}.#{node['profile-testgang']['domain']}",
     'listen'      => 80,
+    'rewrite'     => '^ https://$server_name$request_uri? permanent'
+  },
+  {
+    'server_name' => "#{node['profile-testgang']['app']['name']}.#{node['profile-testgang']['domain']}",
+    'listen'      => 443,
+    'ssl'         => 'on',
+    'ssl_certificate'     => File.join(node['profile-testgang']['app']['ssl_dir'], 'cert.crt'),
+    'ssl_certificate_key' => File.join(node['profile-testgang']['app']['ssl_dir'], 'key.crt'),
     'location'    => [
       {
         'path'       => '/',
