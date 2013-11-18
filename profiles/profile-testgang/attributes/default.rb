@@ -25,6 +25,7 @@ default['profile-testgang']['app']['ssl_dir'] = File.join(node['profile-testgang
 default['profile-testgang']['rip']['name'] = 's1'
 default['profile-testgang']['rip']['port'] = 8080
 default['profile-testgang']['rip']['root'] =  File.join(node['profile-testgang']['user']['home'], 'rip')
+default['profile-testgang']['rip']['ssl_dir'] = File.join(node['profile-testgang']['user']['home'], 'ssl', 'rip')
 
 default['profile-testgang']['front']['name'] = 'www'
 default['profile-testgang']['front']['root'] = File.join(node['profile-testgang']['user']['home'], 'www')
@@ -64,6 +65,14 @@ default['profile-testgang']['nginx']['servers'] = [
   {
     'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}",
     'listen'      => 80,
+    'rewrite'     => '^ https://$server_name$request_uri? permanent'
+  },
+  {
+    'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}",
+    'listen'      => 443,
+    'ssl'         => 'on',
+    'ssl_certificate'     => File.join(node['profile-testgang']['rip']['ssl_dir'], 'cert.crt'),
+    'ssl_certificate_key' => File.join(node['profile-testgang']['rip']['ssl_dir'], 'key.crt'),
     'location'    => [
       {
         'path'             => '/',
