@@ -19,15 +19,15 @@ default['profile-testgang']['user']['home'] = "/home/#{node['profile-testgang'][
 default['profile-testgang']['domain'] = 'testgang.net'
 
 default['profile-testgang']['app']['name'] = 'app'
-default['profile-testgang']['app']['root'] = File.join(node['profile-testgang']['user']['home'], node['profile-testgang']['app']['name'])
-default['profile-testgang']['app']['ssl_dir'] = File.join(node['profile-testgang']['user']['home'], 'ssl', node['profile-testgang']['app']['name'])
+default['profile-testgang']['app']['root'] = File.join(node['profile-testgang']['user']['home'], 'app')
+default['profile-testgang']['app']['ssl_dir'] = File.join(node['profile-testgang']['user']['home'], 'ssl', 'app')
 
-default['profile-testgang']['rip']['name'] = 'rip'
+default['profile-testgang']['rip']['name'] = 's1'
 default['profile-testgang']['rip']['port'] = 8080
-default['profile-testgang']['rip']['root'] =  File.join(node['profile-testgang']['user']['home'], node['profile-testgang']['rip']['name'])
+default['profile-testgang']['rip']['root'] =  File.join(node['profile-testgang']['user']['home'], 'rip')
 
 default['profile-testgang']['front']['name'] = 'www'
-default['profile-testgang']['front']['root'] = File.join(node['profile-testgang']['user']['home'], node['profile-testgang']['front']['name'])
+default['profile-testgang']['front']['root'] = File.join(node['profile-testgang']['user']['home'], 'www')
 
 #
 # NGINX
