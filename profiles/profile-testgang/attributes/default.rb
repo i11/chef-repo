@@ -65,7 +65,15 @@ default['profile-testgang']['nginx']['servers'] = [
   {
     'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}",
     'listen'      => 80,
-    'rewrite'     => '^ https://$server_name$request_uri? permanent'
+    'location'    => [
+      {
+        'path'             => '/',
+        'root'             => node['profile-testgang']['rip']['root'],
+        'proxy_pass'       => "http://127.0.0.1:#{node['profile-testgang']['rip']['port']}/",
+        'proxy_redirect'   => 'off',
+        'proxy_set_header' => [ 'Host $host', 'X-Forwarded-For $remote_addr', 'X-Real-IP $remote_addr' ]
+      }
+    ]
   },
   {
     'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}",

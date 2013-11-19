@@ -55,3 +55,6 @@
 [submodule "cookbooks/rabbitmq"]
 	path = cookbooks/rabbitmq
 	url = https://github.com/opscode-cookbooks/rabbitmq.git
+[submodule "cookbooks/ark"]
+	path = cookbooks/ark
+	url = https://github.com/opscode-cookbooks/ark.git
