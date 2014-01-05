@@ -22,10 +22,8 @@ default['profile-testgang']['app']['name'] = 'app'
 default['profile-testgang']['app']['root'] = File.join(node['profile-testgang']['user']['home'], 'app')
 default['profile-testgang']['app']['ssl_dir'] = File.join(node['profile-testgang']['user']['home'], 'ssl', 'app')
 
-default['profile-testgang']['rip']['name'] = 's1'
 default['profile-testgang']['rip']['port'] = 8080
 default['profile-testgang']['rip']['root'] =  File.join(node['profile-testgang']['user']['home'], 'rip')
-default['profile-testgang']['rip']['ssl_dir'] = File.join(node['profile-testgang']['user']['home'], 'ssl', 'rip')
 
 default['profile-testgang']['front']['name'] = 'www'
 default['profile-testgang']['front']['root'] = File.join(node['profile-testgang']['user']['home'], 'www')
@@ -57,37 +55,15 @@ default['profile-testgang']['nginx']['servers'] = [
     'ssl_certificate_key' => File.join(node['profile-testgang']['app']['ssl_dir'], 'key.crt'),
     'location'    => [
       {
+        'path'             => '/rip/',
+        'root'             => node['profile-testgang']['rip']['root'],
+        'proxy_pass'       => "http://127.0.0.1:#{node['profile-testgang']['rip']['port']}/rip/",
+        'proxy_redirect'   => 'off',
+        'proxy_set_header' => [ 'Host $host', 'X-Forwarded-For $remote_addr', 'X-Real-IP $remote_addr' ]
+      },
+      {
         'path'       => '/',
         'root'       => node['profile-testgang']['app']['root']
-      }
-    ]
-  },
-  {
-    'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}",
-    'listen'      => 80,
-    'location'    => [
-      {
-        'path'             => '/',
-        'root'             => node['profile-testgang']['rip']['root'],
-        'proxy_pass'       => "http://127.0.0.1:#{node['profile-testgang']['rip']['port']}/",
-        'proxy_redirect'   => 'off',
-        'proxy_set_header' => [ 'Host $host', 'X-Forwarded-For $remote_addr', 'X-Real-IP $remote_addr' ]
-      }
-    ]
-  },
-  {
-    'server_name' => "#{node['profile-testgang']['rip']['name']}.#{node['profile-testgang']['domain']}",
-    'listen'      => 443,
-    'ssl'         => 'on',
-    'ssl_certificate'     => File.join(node['profile-testgang']['rip']['ssl_dir'], 'cert.crt'),
-    'ssl_certificate_key' => File.join(node['profile-testgang']['rip']['ssl_dir'], 'key.crt'),
-    'location'    => [
-      {
-        'path'             => '/',
-        'root'             => node['profile-testgang']['rip']['root'],
-        'proxy_pass'       => "http://127.0.0.1:#{node['profile-testgang']['rip']['port']}/",
-        'proxy_redirect'   => 'off',
-        'proxy_set_header' => [ 'Host $host', 'X-Forwarded-For $remote_addr', 'X-Real-IP $remote_addr' ]
       }
     ]
   }
